@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1em;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>Cadastro de novas obras</h1>
+    </header>
+
+    <section id="login_senha">
+    <h2>Login</h2>
+    <form method="post" action="{{ url_for('login') }}">
+        <label for="username">Usuário:</label>
+        <input autocomplete="off" autofocus placeholder="" type="text" id="username" name="username" required>
+        <br>
+        <label for="password">Senha:</label>
+        <input autocomplete="off" autofocus placeholder="" type="password" id="password" name="password" required>
+        <br>
+        <button type="submit">Entrar</button>
+    </form>
+    {% if error %}
+        <p>{{ error }}</p>
+    {% endif %}
+    </section>
+
+    <footer>
+            <p>Retornar a página Inicial</p>
+            <form action="{{ url_for('homepage')}}">
+        <button type="submit" >Home</button>
+    </form>
+    </footer>
+</body>
+</html>

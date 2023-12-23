@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Sisteca</title>
+    <link href="https://fonts.cdnfonts.com/css/whisper-3" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/unbounded" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/lcd" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8 ;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+    @import url('https://fonts.cdnfonts.com/css/whisper-3');
+    @import url('https://fonts.cdnfonts.com/css/unbounded');
+    @import url('https://fonts.cdnfonts.com/css/lcd');
+
+    .champ-font {
+            font-family: 'Unbounded', sans-serif;
+        }
+
+    .biblio-font {
+            font-family: 'Whisper', sans-serif;
+        }
+
+    .relogio-font {
+            font-family: 'LCDMono2', sans-serif;
+        }
+
+        /*font-family: 'LCD',  'LCD2','LCDMono2', 'LCDMono', 'Digitalism', sans-serif; */
+
+    .aumentada {
+            font-size: 45px; /* Ajuste o tamanho conforme necessário */
+        }
+
+        header {
+            background-color: #878; /* 9933af; */
+            color: #73ff29;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1em;
+            font-weight: bold;
+        }
+    /* ------------------------- CORES ------------------------------- */
+        .roxoclaro {
+        color: #804080;
+        }
+
+        .amarelo {
+        color: #FFFF00;
+        }
+
+        .roxo {
+        color: #800080;
+        }
+
+        .branco {
+        color: #FFFFFF;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #444 ;
+            color: #fff;
+            text-align: center;
+            padding: 0.3em;
+            margin-top: auto;
+        }
+    </style>
+
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leitor de Texto </title>
+
+    <script>
+        function redimensionarImagem(){
+            var imagem = document.getElementById('1');
+            imagem.style.width = 'auto'; // Mantém a proporção da imagem
+            imagem.style.height = '100px'; // Define a altura desejada
+        }
+
+
+    function obterHoraBrasilia() {
+    const agora = new Date();
+    const fusoHorarioBrasilia = 0; // Fuso horário de Brasília (UTC-3)
+    const horaBrasilia = agora.getHours() + fusoHorarioBrasilia;
+    const minutos = agora.getMinutes();
+    const segundos = agora.getSeconds();
+
+    return `${horaBrasilia}:${minutos}:${segundos}`;
+    }
+
+
+    function atualizarHora() {
+            const horaElemento = document.getElementById('hora');
+            if (horaElemento) {
+                horaElemento.textContent = obterHoraBrasilia();
+            }
+    }
+    setInterval(atualizarHora, 1000);
+
+
+    </script>
+</head>
+<body>
+
+     <header>
+        <!-- > <h1>Biblioteca <span class="roxo"> Champagnat </span> </h1>-->
+     <!--<img id="1" src="https://escolachampagnat.com.br/wp-content/themes/champagnat2/dist/img/logo-nova.svg" alt="Champ" onload="redimensionarImagem()"> -->
+         <img id="1" src="/static/sisteca.png" alt="Sisteca" onload="redimensionarImagem()">
+     </header>
+
+
+    <nav>
+        <a href="/pesquisar_obras"> <span class="amarelo"> Busca de Livros</span></a>
+        <a href="/login"><span class="amarelo"> Cadastro de Livros</span></a>
+
+    </nav>
+
+    <section>
+        <h1 class="biblio-font aumentada"> <span class="roxo"> Bem-vindo a Biblioteca </span> </h1>
+        <!-- <h2 <p class="champ-font" > <span class="roxo"> Biblioteca </span> </p></h2>-->
+        <h2 class="champ-font" > <span class="roxo"> Sisteca   ❤ </span>  </h2>
+        <!-- <h2> <span class="roxo"> Biblioteca </span> <span class="amarelo"> Valmir </span>  <span class="roxo"> ❤ </span>  </h2> -->
+    </section>
+
+    <section>
+    <!-- Substitua "caminho/da/imagem.jpg" pelo caminho real da sua imagem -->
+    <img src="/static/lendo.svg" alt="lendo">
+    <!-- <img src="C:\Users\User\PycharmProjects\pythonProject3\image\1.jpg" alt="Champ">-->
+    </section>
+
+    <footer>
+        <h1>  <span class="amarelo relogio-font" id="hora">  </span> </h1>
+        <p>&copy; 2023. Todos os direitos reservados aos <a href="/desenvolvedores"><span class="branco"> desenvolvedores </span></a>.</p>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    </footer>
+</body>
+</html>

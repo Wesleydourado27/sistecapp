@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8">
+    <title>Cadastrar Livros</title>
+    <link href="https://fonts.cdnfonts.com/css/whisper-3" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/unbounded" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/lcd" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/reverie" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/darbots-2" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/stick-no-bills" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/huntrela" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'BanzaiBrosW01-Regular', sans-serif;
+            background-color: #f8f8f8 ;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+        }
+        .form-group {
+            display: inline-block;
+            flex-direction: column;
+            align-items: center;
+            max-width: 200px; /* Defina uma largura máxima desejada para o contêiner flexível */
+            margin-bottom: 2px;
+        }
+        label {
+            margin-right: 2px;
+        }
+    /* ------------------------- url ------------------------------- */
+    @import url('https://fonts.cdnfonts.com/css/whisper-3');
+    @import url('https://fonts.cdnfonts.com/css/unbounded');
+    @import url('https://fonts.cdnfonts.com/css/lcd');
+    @import url('https://fonts.cdnfonts.com/css/reverie');
+    @import url('https://fonts.cdnfonts.com/css/darbots-2');
+    @import url('https://fonts.cdnfonts.com/css/stick-no-bills');
+    @import url('https://fonts.cdnfonts.com/css/huntrela');
+    /* ------------------------- FONTES ------------------------------- */
+    .champ-font {
+            font-family: 'Unbounded', sans-serif;
+        }
+
+    .biblio-font {
+            font-family: 'Whisper', sans-serif;
+        }
+
+    .relogio-font {
+            font-family: 'LCDMono2', sans-serif;
+        }
+
+    .darbots-font {
+            font-family: 'Darbots', sans-serif;
+        }
+
+    .champ2-font {
+                font-family: 'Huntrela', sans-serif;
+        }
+
+
+    .aumentada {
+            font-size: 45px; /* Ajuste o tamanho conforme necessário */
+        }
+
+    .medio {
+            font-size: 30px; /* Ajuste o tamanho conforme necessário */
+        }
+
+        header {
+            background-color: #9933af;
+            color: #73ff29;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #800080;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        nav2 {
+            background-color: #000080;
+            /* text-decoration: line-through; */
+            /* text-decoration-style: dashed;  Linha pontilhada */
+            margin: 0 1em;
+            font-weight: bold;
+        }
+    /* ------------------------- CORES ------------------------------- */
+        .roxoclaro {
+        color: #804080;
+        }
+
+        .amarelo {
+        color: #FFFF00;
+        }
+
+        .roxo {
+        color: #800080;
+        }
+
+        .branco {
+        color: #FFFFFF;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #993399;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+    </style>
+
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Buscar e Excluir Obras</title>
+
+    <script>
+        function redimensionarImagem(){
+            var imagem = document.getElementById('1');
+            imagem.style.width = 'auto'; // Mantém a proporção da imagem
+            imagem.style.height = '100px'; // Define a altura desejada
+        }
+
+
+    function obterHoraBrasilia() {
+    const agora = new Date();
+    const fusoHorarioBrasilia = 0; // Fuso horário de Brasília (UTC-3)
+    const horaBrasilia = agora.getHours() + fusoHorarioBrasilia;
+    const minutos = agora.getMinutes();
+    const segundos = agora.getSeconds();
+
+    return `${horaBrasilia}:${minutos}:${segundos}`;
+    }
+
+
+    function atualizarHora() {
+            const horaElemento = document.getElementById('hora');
+            if (horaElemento) {
+                horaElemento.textContent = obterHoraBrasilia();
+            }
+    }
+    setInterval(atualizarHora, 1000);
+
+
+    </script>
+</head>
+
+
+<body>
+    <h1>Buscar e Excluir Obras</h1>
+
+    <form action="{{ url_for('excluir_obra') }}" method="post">
+        <label for="titulo_pesquisa">Título:</label>
+        <input type="text" id="titulo_pesquisa" name="titulo_pesquisa" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+
+        <h2> <span class="roxoclaro"> Resultados da Busca </span> </h2>
+    <nav2>
+        <!-- Se houver obras, liste-as -->
+    {% if obras %}
+    {% for obra in obras %}
+        <p><span class="roxoclaro"> ***************** </span> </p>
+        <p> {{ obra.titulo }} - {{ obra.autor }} - {{ obra.tipo_literatura }} </p>
+        <p>- Editora:{{ obra.editora }} - Ano:{{ obra.ano }} - ISBN: {{ obra.isbn }} - Código: {{ obra.codigo }} </p>
+        <form action="{{ url_for('excluir_obras', obra_id=obra.id) }}" method="post">
+            <button type="submit">Excluir Obra</button>
+        </form>
+    {% endfor %}
+{% else %}
+    <!-- Se não houver obras cadastradas -->
+    <p>Nenhuma obra cadastrada ainda.</p>
+{% endif %}
+
+    </nav2>
+
+    <footer>
+           <p>Retornar à página de Cadastro</p>
+        <form action="{{ url_for('cadastrar_obra')}}">
+            <button type="submit">Cadastro</button>
+        </form>
+
+        <p>Retornar à página Inicial</p>
+        <form action="{{ url_for('homepage') }}">
+            <button type="submit">Página Inicial</button>
+        </form>
+    </footer>
+</body>
+</html>

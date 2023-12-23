@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+    <title>Mostrar Obras</title>
+
+{% block body %}
+
+    {% block titulo1 %}
+    <header>
+    <img id="1" src="/static/sisteca.png" alt="Sisteca" onload="redimensionarImagem()">
+    </header>
+    {% endblock %}
+
+
+    <h1 class="champ2-font"> Ordenar por: </h1>
+    <form method="post" action="{{ url_for('mostrar_obras') }}">
+        <button type="submit" name="ordenar" value="titulo"><span class="roxo champ-font ">Título</span></button>
+        <button type="submit" name="ordenar" value="autor"><span class="roxo champ-font ">Autor</span></button>
+    </form>
+
+
+
+
+{% block section1 %}<h1 class="champ2-font"> Lista de Obras </h1> {% endblock %}
+    <ul>
+        {% for obra in obras %}
+            <li>{{ obra.titulo }} - {{ obra.autor }} - código: {{ obra.codigo }}</li>
+        {% endfor %}
+    </ul>
+
+
+
+    {% block relogio %}
+    <footer>
+        <h1> <span class="amarelo relogio-font aumentada" id="hora">  </span> </h1>
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <form action="{{ url_for('pesquisar_obras')}}">
+        <button type="submit"> Página de Busca de Livros</button>
+    </form>
+
+    <form action="{{ url_for('homepage')}}">
+        <button type="submit"> Página Inicial</button>
+    </form>
+
+    </footer>
+    {% endblock %}
+{% endblock %}

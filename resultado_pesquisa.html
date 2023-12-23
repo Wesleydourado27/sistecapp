@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <! -------------------------------------------------------------------------------!>
+    <link rel="stylesheet" href="styles.css">
+     <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        header {
+            background-color: #9933af;
+            color: #73ff29;
+            padding: 1em;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 0.5em;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 1em;
+            font-weight: bold;
+        }
+
+        section {
+            padding: 2em;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 1em;
+        }
+
+        .centro {
+            text-align: center;
+        }
+
+        .verm {
+        color: #d60000;
+        }
+
+        .Magenta {
+        color: #ff00ff;
+        }
+
+        .laranja {
+        color: #FFA500;
+        }
+
+        /* Remover bolinhas e usar um símbolo personalizado (por exemplo, um quadrado) */
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li::before {
+            content: '\25A0'; /* Código Unicode para um quadrado */
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em; /* Ajuste para alinhar com o texto */
+        }
+    </style>
+     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <! -------------------------------------------------------------------------------!>
+
+    <title>Resultados da Pesquisa</title>
+</head>
+<body>
+    <header><h1>Resultados da Pesquisa</h1></header>
+    <section>
+
+    <h1><span class="Magenta">A leitura é, provavelmente, uma outra maneira de estar em um lugar</span></h1>
+    <p1><span class="laranja"> José Saramago</span></p1>
+    </section>
+    <p1><span class="laranja">* ------------------------------------------ *</span></p1>
+    <section>
+    {% if obras %}
+        <ul>
+            {% for obra in obras %}
+                <li>
+                    <strong>Título:</strong> {{ obra.titulo }}<br>
+                    <strong>Autor:</strong> {{ obra.autor }}<br>
+                    <strong>Tipo de Literatura:</strong> {{ obra.tipo_literatura }}<br>
+                    <strong>Editora:</strong> {{ obra.editora }}<br>
+                    <strong>Ano:</strong> {{ obra.ano }}<br>
+                    <!--<strong>Status:</strong> {{ obra.status }}<br> -->
+                    <strong>ISBN:</strong> {{ obra.isbn }}<br>
+                    <strong>Código da Biblioteca:</strong> {{ obra.codigo }}<br>
+                    <!-- NOVO ********************************************************************************************-->
+                </li>
+
+                <p1><span class="laranja">* ------------------------------------------ *</span></p1>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Nenhuma obra encontrada.</p>
+    {% endif %}
+
+    </section>
+
+    <footer>
+        <p>Retornar a página Anterior</p>
+    <form action="{{ url_for('pesquisar_obras')}}">
+        <button type="submit" >Busca de Livros</button>
+    </form>
+        <p>Retornar a página inicial</p>
+    <form action="{{ url_for('homepage')}}">
+        <button type="submit" >Home</button>
+    </form>
+    </footer>
+</body>
+</html>
